@@ -25,3 +25,6 @@ stdout.log
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+# Original source archives
+*.zip

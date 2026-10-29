@@ -28,3 +28,6 @@ Desktop.ini
 
 # Original source archives
 *.zip
+
+# Build logs
+*.log

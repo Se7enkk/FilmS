@@ -1,0 +1,318 @@
+﻿[  0%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/decoders/canon_600.cpp.obj
+[  0%] Building C object engine/CMakeFiles/spk_volk.dir/third_party/volk/volk.c.obj
+[  0%] Building CXX object engine/CMakeFiles/spektralab_core.dir/src/core/blob.cpp.obj
+[  0%] Generating resources/vulkan/spk_di_normalise.spv
+cmake.exe : C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_di_normali
+se.comp
+所在位置 行:1 字符: 434
++ ... $qt\bin;$env:PATH"; & $cmake --build $build --parallel 4 2>&1 | Tee-O ...
++                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:/Users/Admini..._normalise.comp:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[  1%] Generating resources/vulkan/spk_math_probe.spv
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_math_probe.comp
+[  1%] Generating resources/vulkan/spk_take_rgb.spv
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_take_rgb.comp
+[  1%] Generating resources/vulkan/spk_matmul3.spv
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_matmul3.comp
+[  1%] Generating resources/vulkan/spk_stride_sample.spv
+[  2%] Linking C static library libspk_volk.a
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_stride_sample.comp
+[  3%] Generating resources/vulkan/spk_affine3.spv
+[  3%] Built target spk_volk
+[  3%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/decoders/crx.cpp.obj
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_affine3.comp
+[  4%] Generating resources/vulkan/spk_tc_b.spv
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_tc_b.comp
+[  5%] Generating resources/vulkan/spk_lut2d_cubic.spv
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_lut2d_cubic.comp
+[  5%] Generating resources/vulkan/spk_sep_fir_acc.spv
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_sep_fir_acc.comp
+[  5%] Generating resources/vulkan/spk_iir_df_acc.spv
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_iir_df_acc.comp
+[  5%] Generating resources/vulkan/spk_lincomb3.spv
+[  5%] Building CXX object engine/CMakeFiles/spektralab_core.dir/src/core/cam16.cpp.obj
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_lincomb3.comp
+[  6%] Generating resources/vulkan/spk_log10_guarded.spv
+[  6%] Copying SpektraLabQt qml resources into build dir
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_log10_guarded.comp
+[  7%] Generating resources/vulkan/spk_curves.spv
+[  7%] Built target SpektraLabQt_copy_res
+[  8%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/decoders/decoders_dcraw.cpp.obj
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_curves.comp
+[  8%] Generating resources/vulkan/spk_couplers_correction.spv
+[  9%] Building CXX object engine/CMakeFiles/spektralab_core.dir/src/core/colour.cpp.obj
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_couplers_correction.co
+mp
+[ 10%] Generating resources/vulkan/spk_spectral_epilogue.spv
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_spectral_epilogue.comp
+[ 11%] Generating resources/vulkan/spk_print_exposure.spv
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_print_exposure.comp
+[ 11%] Generating resources/vulkan/spk_cam16ucs_compress.spv
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_cam16ucs_compress.comp
+[ 12%] Generating resources/vulkan/spk_cctf_encode_matrix.spv
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_cctf_encode_matrix.com
+p
+[ 12%] Generating resources/vulkan/spk_to_rgba16.spv
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_to_rgba16.comp
+[ 12%] Generating resources/vulkan/spk_grain_layers.spv
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_grain_layers.comp
+[ 13%] Generating resources/vulkan/spk_grain_layer_one.spv
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_grain_layer_one.comp
+[ 14%] Generating resources/vulkan/spk_grain_simple.spv
+[ 14%] Building CXX object engine/CMakeFiles/spektralab_core.dir/src/core/curves.cpp.obj
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_grain_simple.comp
+[ 14%] Generating resources/vulkan/spk_lognormal_field.spv
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_lognormal_field.comp
+[ 15%] Generating resources/vulkan/spk_rng_probe.spv
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_rng_probe.comp
+[ 15%] Generating resources/vulkan/spk_mul.spv
+[ 16%] Populating .qmlls.ini file at C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/build/qt/.qt/.qmlls.build.ini
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_mul.comp
+[ 16%] Generating resources/vulkan/spk_glare_add.spv
+[ 16%] Built target generate_qmlls_build_ini_file
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_glare_add.comp
+[ 17%] Building CXX object engine/CMakeFiles/spektralab_core.dir/src/core/digital_intermediate.cpp.obj
+[ 17%] Generating resources/vulkan/spk_reduce_max.spv
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_reduce_max.comp
+[ 17%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/decoders/decoders_libraw.cpp.obj
+[ 17%] Generating resources/vulkan/spk_boost.spv
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_boost.comp
+[ 18%] Generating resources/vulkan/spk_bw_correct.spv
+[ 19%] Running qmlimportscanner for SpektraLabQt
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_bw_correct.comp
+[ 19%] Generating resources/vulkan/spk_edr.spv
+[ 19%] Built target SpektraLabQt_qmlimportscan
+[ 20%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/decoders/decoders_libraw_dcrdefs.cpp.obj
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_edr.comp
+[ 20%] Generating resources/vulkan/spk_cctf_decode.spv
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_cctf_decode.comp
+[ 21%] Generating resources/vulkan/spk_zoom_bilinear_mirror.spv
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_zoom_bilinear_mirror.c
+omp
+[ 22%] Generating resources/vulkan/spk_geometry_resample_df.spv
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_geometry_resample_df.c
+omp
+[ 22%] Generating resources/vulkan/spk_lut3d_trilinear.spv
+[ 22%] Building CXX object engine/CMakeFiles/spektralab_core.dir/src/core/hanatos.cpp.obj
+C:/Users/Administrator/Doubao/chats/2026-10-27/new-chat/SpektraLab/engine/src/shaders/vulkan/spk_lut3d_trilinear.comp
+[ 22%] Built target spektralab_vulkan_resources
+[ 22%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/decoders/dng.cpp.obj
+[ 23%] Building CXX object engine/CMakeFiles/spektralab_core.dir/src/core/json.cpp.obj
+[ 24%] Copying SpektraLabQt qml sources into build dir
+[ 24%] Built target SpektraLabQt_copy_qml
+[ 24%] Building CXX object engine/CMakeFiles/spektralab_core.dir/src/core/latitude_fit.cpp.obj
+[ 24%] Built target spektralab_qt_resources
+[ 25%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/decoders/fp_dng.cpp.obj
+[ 25%] Building CXX object engine/CMakeFiles/spektralab_core.dir/src/core/numeric.cpp.obj
+[ 25%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/decoders/fuji_compressed.cpp.obj
+[ 25%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/decoders/generic.cpp.obj
+[ 26%] Building CXX object engine/CMakeFiles/spektralab_core.dir/src/core/params.cpp.obj
+[ 26%] Building CXX object engine/CMakeFiles/spektralab_core.dir/src/core/print_lut.cpp.obj
+[ 27%] Building CXX object engine/CMakeFiles/spektralab_core.dir/src/core/printing.cpp.obj
+[ 28%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/decoders/kodak_decoders.cpp.obj
+[ 28%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/decoders/load_mfbacks.cpp.obj
+[ 29%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/decoders/olympus14.cpp.obj
+[ 29%] Building CXX object engine/CMakeFiles/spektralab_core.dir/src/core/profile.cpp.obj
+[ 30%] Building CXX object engine/CMakeFiles/spektralab_core.dir/src/core/setup_cache.cpp.obj
+[ 30%] Building CXX object engine/CMakeFiles/spektralab_core.dir/src/core/spectral.cpp.obj
+[ 30%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/decoders/pana8.cpp.obj
+[ 31%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/decoders/smal.cpp.obj
+[ 31%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/decoders/sonycc.cpp.obj
+[ 31%] Linking CXX static library libspektralab_core.a
+[ 31%] Built target spektralab_core
+[ 31%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/decoders/unpack.cpp.obj
+[ 32%] Building CXX object engine/CMakeFiles/spektralab_pipeline.dir/src/pipeline/blur.cpp.obj
+[ 33%] Building CXX object engine/CMakeFiles/spk_dump_json.dir/tests/dump_json.cpp.obj
+[ 33%] Building CXX object engine/CMakeFiles/spektralab_pipeline.dir/src/pipeline/engine.cpp.obj
+[ 34%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/decoders/unpack_thumb.cpp.obj
+[ 35%] Building CXX object engine/CMakeFiles/spk_dump_setup.dir/tests/dump_setup.cpp.obj
+[ 35%] Linking CXX executable spk_dump_json.exe
+[ 35%] Built target spk_dump_json
+[ 35%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/decompressors/losslessjpeg.cpp.obj
+[ 35%] Building CXX object engine/CMakeFiles/spektralab_pipeline.dir/src/pipeline/pipeline.cpp.obj
+[ 35%] Linking CXX executable spk_dump_setup.exe
+[ 35%] Built target spk_dump_setup
+[ 36%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/demosaic/aahd_demosaic.cpp.obj
+[ 37%] Building CXX object engine/CMakeFiles/spektralab_pipeline.dir/src/pipeline/scene_latitude.cpp.obj
+[ 37%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/demosaic/ahd_demosaic.cpp.obj
+[ 37%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/demosaic/dcb_demosaic.cpp.obj
+[ 38%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/demosaic/dht_demosaic.cpp.obj
+[ 38%] Building CXX object engine/CMakeFiles/spektralab_pipeline.dir/src/pipeline/windows_unported.cpp.obj
+[ 38%] Built target spektralab_pipeline
+[ 38%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/demosaic/misc_demosaic.cpp.obj
+[ 39%] Building CXX object engine/CMakeFiles/spektralab_engine.dir/src/gpu/vulkan_gpu.cpp.obj
+[ 40%] Building CXX object engine/CMakeFiles/spektralab_engine_shared.dir/src/gpu/vulkan_gpu.cpp.obj
+[ 41%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/demosaic/xtrans_demosaic.cpp.obj
+[ 41%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/integration/dngsdk_glue.cpp.obj
+[ 41%] Linking CXX static library libspektralab_engine.a
+[ 41%] Built target spektralab_engine
+[ 42%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/integration/rawspeed_glue.cpp.obj
+[ 42%] Building CXX object engine/CMakeFiles/spk_vulkan_smoke.dir/tests/gpu_vulkan_smoke.cpp.obj
+[ 42%] Linking CXX shared library spektrafilm_engine.dll
+[ 42%] Building CXX object engine/CMakeFiles/spk_vulkan_grain.dir/tests/gpu_vulkan_grain.cpp.obj
+[ 42%] Built target spektralab_engine_shared
+[ 42%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/libraw_c_api.cpp.obj
+[ 43%] Building CXX object engine/CMakeFiles/spk_vulkan_pointwise.dir/tests/gpu_vulkan_pointwise.cpp.obj
+[ 43%] Linking CXX executable spk_vulkan_grain.exe
+[ 44%] Linking CXX executable spk_vulkan_smoke.exe
+[ 44%] Built target spk_vulkan_grain
+[ 44%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/libraw_datastream.cpp.obj
+[ 44%] Built target spk_vulkan_smoke
+[ 45%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/adobepano.cpp.obj
+[ 46%] Building CXX object engine/CMakeFiles/spk_vulkan_resample.dir/tests/gpu_vulkan_resample.cpp.obj
+[ 46%] Linking CXX executable spk_vulkan_pointwise.exe
+[ 46%] Built target spk_vulkan_pointwise
+[ 46%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/canon.cpp.obj
+[ 46%] Linking CXX executable spk_vulkan_resample.exe
+[ 46%] Built target spk_vulkan_resample
+[ 47%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/ciff.cpp.obj
+[ 47%] Building CXX object engine/CMakeFiles/spk_vulkan_transfer.dir/tests/gpu_vulkan_transfer.cpp.obj
+[ 47%] Building CXX object engine/CMakeFiles/spk_vulkan_geometry.dir/tests/gpu_vulkan_geometry.cpp.obj
+[ 48%] Building CXX object engine/CMakeFiles/spk_vulkan_lut_di.dir/tests/gpu_vulkan_lut_di.cpp.obj
+[ 50%] Linking CXX executable spk_vulkan_transfer.exe
+[ 51%] Linking CXX executable spk_vulkan_geometry.exe
+[ 51%] Built target spk_vulkan_transfer
+[ 51%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/cr3_parser.cpp.obj
+[ 51%] Built target spk_vulkan_geometry
+[ 52%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/epson.cpp.obj
+[ 52%] Building CXX object engine/CMakeFiles/spk_windows_feature_boundaries.dir/tests/windows_feature_boundaries.cpp.obj
+[ 53%] Linking CXX executable spk_windows_feature_boundaries.exe
+[ 53%] Linking CXX executable spk_vulkan_lut_di.exe
+[ 53%] Built target spk_windows_feature_boundaries
+[ 53%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/exif_gps.cpp.obj
+[ 53%] Built target spk_vulkan_lut_di
+[ 53%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/fuji.cpp.obj
+[ 53%] Building CXX object engine/CMakeFiles/spk_render_fixture.dir/tests/render_fixture.cpp.obj
+[ 54%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/hasselblad_model.cpp.obj
+[ 54%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/identify.cpp.obj
+[ 55%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/identify_tools.cpp.obj
+[ 56%] Linking CXX executable spk_render_fixture.exe
+[ 56%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/kodak.cpp.obj
+[ 56%] Built target spk_render_fixture
+[ 57%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/leica.cpp.obj
+[ 57%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/makernotes.cpp.obj
+[ 57%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/mediumformat.cpp.obj
+[ 58%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/minolta.cpp.obj
+[ 58%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/misc_parsers.cpp.obj
+[ 59%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/nikon.cpp.obj
+[ 59%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/normalize_model.cpp.obj
+[ 59%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/olympus.cpp.obj
+[ 60%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/p1.cpp.obj
+[ 60%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/pentax.cpp.obj
+[ 61%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/samsung.cpp.obj
+[ 61%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/sony.cpp.obj
+[ 62%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/metadata/tiff.cpp.obj
+[ 62%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/postprocessing/aspect_ratio.cpp.obj
+[ 62%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/postprocessing/dcraw_process.cpp.obj
+[ 63%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/postprocessing/mem_image.cpp.obj
+[ 63%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/postprocessing/postprocessing_aux.cpp.obj
+[ 64%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/postprocessing/postprocessing_utils.cpp.obj
+[ 64%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/postprocessing/postprocessing_utils_dcrdefs.cpp.obj
+[ 65%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/preprocessing/ext_preprocess.cpp.obj
+[ 65%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/preprocessing/raw2image.cpp.obj
+[ 65%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/preprocessing/subtract_black.cpp.obj
+[ 66%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/tables/cameralist.cpp.obj
+[ 66%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/tables/colorconst.cpp.obj
+[ 67%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/tables/colordata.cpp.obj
+[ 67%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/tables/wblists.cpp.obj
+[ 68%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/utils/curves.cpp.obj
+[ 68%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/utils/decoder_info.cpp.obj
+[ 68%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/utils/init_close_utils.cpp.obj
+[ 69%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/utils/open.cpp.obj
+[ 69%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/utils/phaseone_processing.cpp.obj
+[ 70%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/utils/read_utils.cpp.obj
+[ 70%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/utils/thumb_utils.cpp.obj
+[ 71%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/utils/utils_dcraw.cpp.obj
+[ 71%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/utils/utils_libraw.cpp.obj
+[ 71%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/write/apply_profile.cpp.obj
+[ 72%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/write/file_write.cpp.obj
+[ 72%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/write/tiff_writer.cpp.obj
+[ 73%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/x3f/x3f_parse_process.cpp.obj
+[ 73%] Building CXX object engine/CMakeFiles/spk_libraw.dir/C_/Users/Administrator/Doubao/chats/2026-10-27/new-chat/deps/LibRaw-0.22.2/src/x3f/x3f_utils_patched.cpp.obj
+[ 73%] Linking CXX static library libspk_libraw.a
+[ 73%] Built target spk_libraw
+[ 73%] Building CXX object engine/CMakeFiles/spk_image_io.dir/src/io/raw_decoder.cpp.obj
+[ 74%] Building CXX object engine/CMakeFiles/spk_raw_metadata_link.dir/tests/raw_metadata_link.cpp.obj
+[ 75%] Building CXX object engine/CMakeFiles/spk_image_io.dir/src/io/raw_headroom.cpp.obj
+[ 75%] Building CXX object engine/CMakeFiles/spk_image_io.dir/src/io/image_writer.cpp.obj
+[ 75%] Linking CXX executable spk_raw_metadata_link.exe
+[ 75%] Built target spk_raw_metadata_link
+[ 76%] Linking CXX static library libspk_image_io.a
+[ 76%] Built target spk_image_io
+[ 76%] Building CXX object engine/CMakeFiles/spk_desktop_host.dir/src/desktop/preview_host.cpp.obj
+[ 77%] Building CXX object engine/CMakeFiles/spk_raw_render.dir/tools/raw_render.cpp.obj
+[ 77%] Building CXX object engine/CMakeFiles/spk_image_writer_test.dir/tests/image_writer_test.cpp.obj
+[ 77%] Building CXX object engine/CMakeFiles/spk_raw_decoder_errors.dir/tests/raw_decoder_errors.cpp.obj
+[ 77%] Linking CXX executable spk_raw_decoder_errors.exe
+[ 77%] Built target spk_raw_decoder_errors
+[ 78%] Building CXX object engine/CMakeFiles/spk_raw_headroom.dir/tests/raw_headroom.cpp.obj
+[ 78%] Linking CXX executable spk_raw_headroom.exe
+[ 79%] Linking CXX executable spk_image_writer_test.exe
+[ 79%] Built target spk_raw_headroom
+[ 79%] Built target spk_image_writer_test
+[ 79%] Linking CXX static library libspk_desktop_host.a
+[ 79%] Built target spk_desktop_host
+[ 79%] Automatic MOC and UIC for target SpektraLabQt
+[ 80%] Automatic MOC and UIC for target spk_qt_frame_output_test
+[ 81%] Automatic MOC and UIC for target spk_qt_library_workflow_test
+[ 81%] Built target spk_qt_frame_output_test_autogen
+[ 82%] Automatic MOC and UIC for target spk_qt_edit_store_test
+[ 82%] Built target spk_qt_edit_store_test_autogen
+[ 83%] Automatic MOC and UIC for target spk_qt_editing_workflow_test
+[ 83%] Built target SpektraLabQt_autogen
+[ 83%] Built target spk_qt_library_workflow_test_autogen
+[ 83%] Building CXX object engine/CMakeFiles/SpektraLab.dir/tools/windows_preview.cpp.obj
+[ 84%] Building CXX object engine/CMakeFiles/spk_desktop_preview_test.dir/tests/desktop_preview.cpp.obj
+[ 84%] Built target spk_qt_editing_workflow_test_autogen
+[ 84%] Running AUTOMOC file extraction for target SpektraLabQt
+[ 84%] Built target SpektraLabQt_automoc_json_extraction
+[ 84%] Building CXX object CMakeFiles/spk_qt_frame_output_test.dir/spk_qt_frame_output_test_autogen/mocs_compilation.cpp.obj
+[ 84%] Building CXX object CMakeFiles/spk_qt_frame_output_test.dir/tests/frame_output.cpp.obj
+[ 84%] Linking CXX executable spk_raw_render.exe
+[ 84%] Built target spk_raw_render
+[ 85%] Building CXX object CMakeFiles/spk_qt_frame_output_test.dir/src/FrameOutput.cpp.obj
+[ 85%] Linking CXX executable spk_desktop_preview_test.exe
+[ 85%] Built target spk_desktop_preview_test
+[ 85%] Building CXX object CMakeFiles/spk_qt_library_workflow_test.dir/spk_qt_library_workflow_test_autogen/mocs_compilation.cpp.obj
+[ 86%] Building CXX object CMakeFiles/spk_qt_edit_store_test.dir/spk_qt_edit_store_test_autogen/mocs_compilation.cpp.obj
+[ 86%] Building CXX object CMakeFiles/spk_qt_edit_store_test.dir/tests/edit_store.cpp.obj
+[ 86%] Linking CXX executable SpektraLab.exe
+[ 86%] Built target SpektraLab
+[ 87%] Building CXX object CMakeFiles/spk_qt_library_workflow_test.dir/tests/library_workflow.cpp.obj
+[ 87%] Linking CXX executable spk_qt_frame_output_test.exe
+[ 87%] Built target spk_qt_frame_output_test
+[ 88%] Building CXX object CMakeFiles/spk_qt_edit_store_test.dir/src/EditStore.cpp.obj
+[ 88%] Building CXX object CMakeFiles/spk_qt_editing_workflow_test.dir/spk_qt_editing_workflow_test_autogen/mocs_compilation.cpp.obj
+[ 88%] Building CXX object CMakeFiles/spk_qt_library_workflow_test.dir/src/PreviewController.cpp.obj
+[ 88%] Building CXX object CMakeFiles/spk_qt_editing_workflow_test.dir/tests/editing_workflow.cpp.obj
+[ 88%] Building CXX object CMakeFiles/spk_qt_library_workflow_test.dir/src/FrameOutput.cpp.obj
+[ 88%] Linking CXX executable spk_qt_edit_store_test.exe
+[ 88%] Built target spk_qt_edit_store_test
+[ 89%] Building CXX object CMakeFiles/spk_qt_editing_workflow_test.dir/src/PreviewController.cpp.obj
+[ 90%] Building CXX object CMakeFiles/spk_qt_library_workflow_test.dir/src/EditStore.cpp.obj
+[ 91%] Running moc --collect-json for target SpektraLabQt
+[ 91%] Running rcc for resource SpektraLabQt_raw_qml_0
+[ 91%] Running rcc for resource SpektraLabQt_raw_qml_0_extra_qmldirs
+[ 92%] Running rcc for resource qmake_SpektraLab
+[ 93%] Generating meta_types/qt6spektralabqt_metatypes.json
+[ 93%] Automatic QML type registration for target SpektraLabQt
+[ 93%] Building CXX object CMakeFiles/SpektraLabQt.dir/SpektraLabQt_autogen/mocs_compilation.cpp.obj
+[ 93%] Building CXX object CMakeFiles/spk_qt_editing_workflow_test.dir/src/FrameOutput.cpp.obj
+[ 94%] Building CXX object CMakeFiles/SpektraLabQt.dir/src/main.cpp.obj
+[ 94%] Linking CXX executable spk_qt_library_workflow_test.exe
+[ 94%] Built target spk_qt_library_workflow_test
+[ 95%] Building CXX object CMakeFiles/spk_qt_editing_workflow_test.dir/src/EditStore.cpp.obj
+[ 95%] Building CXX object CMakeFiles/SpektraLabQt.dir/src/PreviewController.cpp.obj
+[ 96%] Building CXX object CMakeFiles/SpektraLabQt.dir/src/FrameOutput.cpp.obj
+[ 96%] Building CXX object CMakeFiles/SpektraLabQt.dir/src/EditStore.cpp.obj
+[ 96%] Linking CXX executable spk_qt_editing_workflow_test.exe
+[ 96%] Built target spk_qt_editing_workflow_test
+[ 96%] Building CXX object CMakeFiles/SpektraLabQt.dir/src/FrameCanvas.cpp.obj
+[ 97%] Building CXX object CMakeFiles/SpektraLabQt.dir/spektralabqt_qmltyperegistrations.cpp.obj
+[ 97%] Building CXX object CMakeFiles/SpektraLabQt.dir/.qt/rcc/qrc_qmake_SpektraLab.cpp.obj
+[ 98%] Building CXX object CMakeFiles/SpektraLabQt.dir/.qt/rcc/qrc_SpektraLabQt_raw_qml_0.cpp.obj
+[ 98%] Building CXX object CMakeFiles/SpektraLabQt.dir/.qt/rcc/qrc_SpektraLabQt_raw_qml_0_extra_qmldirs.cpp.obj
+[100%] Linking CXX executable app\SpektraLabQt.exe
+[100%] Built target SpektraLabQt

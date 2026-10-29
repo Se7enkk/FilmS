@@ -1,0 +1,141 @@
+#version 450
+layout(local_size_x = 256) in;
+layout(std430, binding = 0) readonly buffer Rgb { float rgb[]; };
+layout(std430, binding = 1) readonly buffer Pblock { float P[]; };
+layout(std430, binding = 2) readonly buffer Nblock { uint n[]; };
+layout(std430, binding = 3) writeonly buffer OutBuf { float dst[]; };
+
+#define P_CW 0
+#define P_PX 2
+#define P_A00 5
+#define P_A01 6
+#define P_A10 7
+#define P_A11 8
+#define P_CS 9
+#define P_CT 10
+#define P_CU 11
+#define P_CV 12
+#define P_FILM_W 44
+#define P_PERFORATED 83
+#define P_PERF_PITCH 84
+#define P_PERF_W 85
+#define P_PERF_H 86
+#define P_PERF_EDGE 87
+#define P_PERF_R 88
+#define P_PERF_PHASE 89
+#define P_HOLES_LIGHT 183
+#define P_LIGHT_R 184
+#define P_LIGHT_G 185
+#define P_LIGHT_B 186
+#define P_PERF_SEED 187
+#define P_WALL_VS 191
+#define P_WALL_VT 192
+#define P_BASE_R 194
+#define P_BASE_G 195
+#define P_BASE_B 196
+#define P_WALL_GLOW 197
+#define P_WALL_SCATTER 198
+#define P_CARRIER 199
+
+uint spk_global_index() {
+    return gl_GlobalInvocationID.y * (gl_NumWorkGroups.x * gl_WorkGroupSize.x) + gl_GlobalInvocationID.x;
+}
+uint hash_u(uint x) {
+    x^=x>>16; x*=0x7feb352du; x^=x>>15; x*=0x846ca68bu; x^=x>>16; return x;
+}
+float hash_f(int i, uint seed) {
+    return float(hash_u(uint(i)*0x9E3779B9u ^ seed))*(1.0/4294967295.0);
+}
+float value_noise(float x, uint seed) {
+    float i0=floor(x), f=x-i0; float w=f*f*(3.0-2.0*f);
+    return mix(hash_f(int(i0),seed), hash_f(int(i0)+1,seed), w);
+}
+vec2 canvas_to_film(float x, float y) {
+    float u=(x+0.5)*P[P_PX]-P[P_CU];
+    float v=(y+0.5)*P[P_PX]-P[P_CV];
+    return vec2(P[P_A00]*u+P[P_A01]*v+P[P_CS], P[P_A10]*u+P[P_A11]*v+P[P_CT]);
+}
+float erf_as(float x) {
+    float t=1.0/(1.0+0.3275911*abs(x));
+    float y=1.0-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*exp(-x*x);
+    return x<0.0?-y:y;
+}
+float perf_sdf(vec2 st, out uint hole) {
+    float W=P[P_FILM_W];
+    float pitch=P[P_PERF_PITCH], ph=P[P_PERF_PHASE];
+    float k=floor((st.x-ph-0.5*P[P_PERF_W])/pitch+0.5);
+    bool top=st.y < 0.5*W;
+    uint seed=uint(P[P_PERF_SEED]);
+    hole=hash_u(uint(int(k)*2+(top?0:1))*0x9E3779B9u ^ seed);
+    float j0=hash_f(int(hole&0xFFFFu),seed^1u)-0.5;
+    float j1=hash_f(int(hole&0xFFFFu),seed^2u)-0.5;
+    float j2=hash_f(int(hole&0xFFFFu),seed^3u)-0.5;
+    float j3=hash_f(int(hole&0xFFFFu),seed^4u)-0.5;
+    float j4=hash_f(int(hole&0xFFFFu),seed^5u)-0.5;
+    float wa=P[P_PERF_W]+0.016*j2;
+    float hc=P[P_PERF_H]+0.016*j3;
+    float r=clamp(P[P_PERF_R]+0.08*j4, 0.3, 0.6);
+    float sc=ph+k*pitch+0.5*P[P_PERF_W]+0.020*j0;
+    float tc=(top?P[P_PERF_EDGE]+0.5*P[P_PERF_H]:W-P[P_PERF_EDGE]-0.5*P[P_PERF_H])+0.024*j1;
+    vec2 q=abs(vec2(st.x-sc, st.y-tc))-vec2(0.5*wa-r, 0.5*hc-r);
+    float d=length(max(q,0.0))+min(max(q.x,q.y),0.0)-r;
+    float rough=0.001+0.003*hash_f(int(hole&0xFFFFu),seed^6u);
+    d+=rough*(value_noise(st.x/0.05, seed^0x77u)+value_noise(st.y/0.05, seed^0x99u)-1.0)*2.0;
+    return d;
+}
+float film_alpha(vec2 st) {
+    float W=P[P_FILM_W], px=P[P_PX];
+    float a=P[P_CARRIER]>1.5?1.0:clamp(min(st.y,W-st.y)/px+0.5,0.0,1.0);
+    if (P[P_PERFORATED]>0.5) {
+        uint hole; float sigma=sqrt(0.017*0.017+0.0961*px*px);
+        float d=perf_sdf(st, hole);
+        a*=0.5+0.5*erf_as(d/(1.41421356*sigma));
+    }
+    return a;
+}
+void main() {
+    uint i=spk_global_index();
+    if (i>=n[0]) return;
+    uint cw=uint(P[P_CW]);
+    vec2 st=canvas_to_film(float(i%cw), float(i/cw));
+    float a=film_alpha(st);
+    bool white=P[P_HOLES_LIGHT]>0.5;
+    vec3 light=vec3(P[P_LIGHT_R], P[P_LIGHT_G], P[P_LIGHT_B]);
+    vec3 c=vec3(rgb[3u*i], rgb[3u*i+1u], rgb[3u*i+2u]);
+    if (P[P_PERFORATED]>0.5) {
+        uint hole;
+        float d=perf_sdf(st, hole);
+        uint seed=uint(P[P_PERF_SEED]);
+        int h=int(hole&0xFFFFu);
+        if (d>-0.03 && d<0.15) {
+            float e=0.003;
+            uint hh;
+            vec2 g=vec2(perf_sdf(st+vec2(e,0),hh)-perf_sdf(st-vec2(e,0),hh),
+                        perf_sdf(st+vec2(0,e),hh)-perf_sdf(st-vec2(0,e),hh));
+            vec2 nrm=g/max(length(g),1e-6);
+            vec2 vdir=vec2(P[P_WALL_VS], P[P_WALL_VT]);
+            float per_hole=0.4+0.6*hash_f(h, seed^0xE1u);
+            float patchv=smoothstep(0.25,0.75,0.5*(value_noise(st.x/0.35,seed^uint(h))+
+                                                 value_noise(st.y/0.35,seed^uint(h)^0x3C)));
+            float side=0.6+0.8*max(0.0,dot(nrm,vdir));
+            float k=per_hole*patchv*side;
+            vec3 tint=mix(vec3(1.0), vec3(P[P_BASE_R],P[P_BASE_G],P[P_BASE_B]), 0.3);
+            float lam=P[P_WALL_SCATTER];
+            if (d>=0.0) {
+                float lift=P[P_WALL_GLOW]*k*exp(-d/lam);
+                c+=lift*tint*(white?light:vec3(1.0));
+            } else if (white && hash_f(h,seed^0xE4u)<0.5) {
+                light*=1.0-0.12*k*(1.0-tint)*exp(d/0.012);
+            }
+        }
+        if (white && d>=0.0) {
+            float fl=0.012*hash_f(h,seed^0xC4u)*step(0.5,hash_f(h,seed^0xC5u));
+            c+=fl*exp(-d/0.025)*light;
+        }
+    }
+    float W=P[P_FILM_W], px=P[P_PX];
+    float on_strip=P[P_CARRIER]>1.5?1.0:clamp(min(st.y,W-st.y)/px+0.5,0.0,1.0);
+    float in_film=on_strip>0.0?a/on_strip:0.0;
+    vec3 r3=mix(vec3(P[P_CARRIER]), mix(light,c,in_film), on_strip);
+    dst[3u*i]=r3.x; dst[3u*i+1u]=r3.y; dst[3u*i+2u]=r3.z;
+}

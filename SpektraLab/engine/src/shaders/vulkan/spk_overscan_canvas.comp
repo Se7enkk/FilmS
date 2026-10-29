@@ -1,0 +1,258 @@
+#version 450
+layout(local_size_x = 256) in;
+layout(std430, binding = 0) readonly buffer Frame { float frame[]; };
+layout(std430, binding = 1) readonly buffer Pblock { float P[]; };
+layout(std430, binding = 2) readonly buffer Nblock { uint n[]; };
+layout(std430, binding = 3) writeonly buffer OutBuf { float dst[]; };
+
+const float PI = 3.14159265358979323846;
+
+uint spk_global_index() {
+    return gl_GlobalInvocationID.y * (gl_NumWorkGroups.x * gl_WorkGroupSize.x) + gl_GlobalInvocationID.x;
+}
+
+// Parameter indices mirror overscan.cpp enum OsP.
+#define P_CW 0
+#define P_CH 1
+#define P_PX 2
+#define P_FW 3
+#define P_FH 4
+#define P_A00 5
+#define P_A01 6
+#define P_A10 7
+#define P_A11 8
+#define P_CS 9
+#define P_CT 10
+#define P_CU 11
+#define P_CV 12
+#define P_VERTICAL 13
+#define P_GS0 14
+#define P_GT0 15
+#define P_GW 16
+#define P_GH 17
+#define P_CORNER 18
+#define P_PENUMBRA 19
+#define P_WOB_A 20
+#define P_WOB_PH 32
+#define P_FILM_W 44
+#define P_FOG_AMP 45
+#define P_FOG_WIDTH 46
+#define P_FOG_SEED 47
+#define P_FOG_PERIOD 48
+#define P_FOG_R 49
+#define P_FOG_G 50
+#define P_FOG_B 51
+#define P_N_LEAKS 52
+#define P_PERFORATED 83
+#define P_PERF_PITCH 84
+#define P_PERF_W 85
+#define P_PERF_H 86
+#define P_PERF_EDGE 87
+#define P_PERF_R 88
+#define P_PERF_PHASE 89
+#define P_HOLE_C 90
+#define P_HOLE_M 91
+#define P_HOLE_Y 92
+#define P_FLARE_AMP 93
+#define P_FLARE_WIDTH 94
+#define P_GATE_R 95
+#define P_N_Q 99
+#define P_Q 100
+#define P_ROUGH_AMP 180
+#define P_ROUGH_PERIOD 181
+#define P_ROUGH_SEED 182
+#define P_HOLES_LIGHT 183
+#define P_LIGHT_R 184
+#define P_LIGHT_G 185
+#define P_LIGHT_B 186
+#define P_PERF_SEED 187
+#define P_LIGHT_FALL 188
+#define P_LIGHT_DIR 189
+#define P_WALL_T 190
+#define P_WALL_VS 191
+#define P_WALL_VT 192
+#define P_WALL_PAR 193
+#define P_BASE_R 194
+#define P_BASE_G 195
+#define P_BASE_B 196
+#define P_WALL_GLOW 197
+#define P_WALL_SCATTER 198
+#define P_CARRIER 199
+#define P_LEAKS 200
+#define P_PAIR_ADV 260
+
+vec2 canvas_to_film(float x, float y) {
+    float u = (x + 0.5) * P[P_PX] - P[P_CU];
+    float v = (y + 0.5) * P[P_PX] - P[P_CV];
+    return vec2(P[P_A00]*u + P[P_A01]*v + P[P_CS],
+                P[P_A10]*u + P[P_A11]*v + P[P_CT]);
+}
+
+uint hash_u(uint x) {
+    x ^= x >> 16;
+    x *= 0x7feb352du;
+    x ^= x >> 15;
+    x *= 0x846ca68bu;
+    x ^= x >> 16;
+    return x;
+}
+float hash_f(int i, uint seed) {
+    return float(hash_u(uint(i) * 0x9E3779B9u ^ seed)) * (1.0/4294967295.0);
+}
+float value_noise(float x, uint seed) {
+    float i0 = floor(x), f = x - i0;
+    float w = f*f*(3.0-2.0*f);
+    return mix(hash_f(int(i0), seed), hash_f(int(i0)+1, seed), w);
+}
+
+float sd_quad(vec2 st, int qoff) {
+    vec2 v0 = vec2(P[qoff+0], P[qoff+1]);
+    vec2 v1 = vec2(P[qoff+2], P[qoff+3]);
+    vec2 v2 = vec2(P[qoff+4], P[qoff+5]);
+    vec2 v3 = vec2(P[qoff+6], P[qoff+7]);
+    vec2 v[4] = vec2[4](v0,v1,v2,v3);
+    float d = dot(st-v0, st-v0);
+    float sgn = 1.0;
+    for (int i=0,j=3; i<4; j=i,i++) {
+        vec2 e = v[j]-v[i];
+        vec2 w = st-v[i];
+        float ee = dot(e,e);
+        if (ee < 1e-12) continue;
+        vec2 b = w - e * clamp(dot(w,e)/ee, 0.0, 1.0);
+        d = min(d, dot(b,b));
+        bool c0 = st.y >= v[i].y;
+        bool c1 = st.y < v[j].y;
+        bool c2 = e.x*w.y > e.y*w.x;
+        if ((c0 && c1 && c2) || (!c0 && !c1 && !c2)) sgn = -sgn;
+    }
+    return sgn * sqrt(d);
+}
+
+float gate_sdf(vec2 st) {
+    float hw = 0.5 * P[P_GW], hh = 0.5 * P[P_GH];
+    float ds = st.x - (P[P_GS0] + hw);
+    float dt = st.y - (P[P_GT0] + hh);
+    float r = ds > 0.0 ? (dt > 0.0 ? P[P_GATE_R+2] : P[P_GATE_R+1])
+                       : (dt > 0.0 ? P[P_GATE_R+3] : P[P_GATE_R+0]);
+    float qs = abs(ds) - (hw - r);
+    float qt = abs(dt) - (hh - r);
+    float d = length(max(vec2(qs,qt), 0.0)) + min(max(qs,qt), 0.0) - r;
+    uint side; float along, len;
+    if (qs > qt) { side = ds > 0 ? 1u : 3u; along = dt + hh; len = 2.0*hh; }
+    else         { side = dt > 0 ? 2u : 0u; along = ds + hw; len = 2.0*hw; }
+    float u = clamp(along/len, 0.0, 1.0);
+    float w = 0.0;
+    for (int k=0; k<3; k++)
+        w += P[P_WOB_A + side*3 + k] * sin(float(k+1)*PI*u + P[P_WOB_PH + side*3 + k]);
+    d -= w * sin(PI*u);
+    int nq = int(P[P_N_Q]);
+    for (int k=0; k<nq; k++) {
+        int q = P_Q + 10*k;
+        float dq;
+        if (abs(P[q+9]) > 1.5) {
+            vec2 rr = max(vec2(P[q+2], P[q+3]), vec2(1e-4));
+            dq = (length((st - vec2(P[q],P[q+1]))/rr) - 1.0) * min(rr.x, rr.y);
+        } else {
+            dq = sd_quad(st, q) - P[q+8];
+        }
+        d = P[q+9] > 0.0 ? min(d, dq) : max(d, -dq);
+    }
+    if (P[P_ROUGH_AMP] > 0.0) {
+        uint seed = uint(P[P_ROUGH_SEED]);
+        float per = max(P[P_ROUGH_PERIOD], 1e-3);
+        d += P[P_ROUGH_AMP] * (value_noise(st.x/per, seed) + value_noise(st.y/per, seed ^ 0x5bd1u) - 1.0);
+    }
+    return d;
+}
+
+float penumbra(float d, float r) {
+    if (r <= 1e-6) return d < 0.0 ? 1.0 : 0.0;
+    float u = clamp(-d/r, -1.0, 1.0);
+    return 0.5 + (u*sqrt(max(1.0-u*u, 0.0)) + asin(u)) * (1.0/PI);
+}
+
+vec3 sample_frame(float fx, float fy) {
+    fx = clamp(fx, 0.0, float(P[P_FW])-1.0);
+    fy = clamp(fy, 0.0, float(P[P_FH])-1.0);
+    float x0 = floor(fx), y0 = floor(fy);
+    uint xi0 = uint(x0), yi0 = uint(y0);
+    uint xi1 = min(xi0+1u, uint(P[P_FW])-1u);
+    uint yi1 = min(yi0+1u, uint(P[P_FH])-1u);
+    float ax = fx - float(xi0), ay = fy - float(yi0);
+    uint i00 = 3u*(yi0*uint(P[P_FW])+xi0);
+    uint i01 = 3u*(yi0*uint(P[P_FW])+xi1);
+    uint i10 = 3u*(yi1*uint(P[P_FW])+xi0);
+    uint i11 = 3u*(yi1*uint(P[P_FW])+xi1);
+    vec3 a = vec3(frame[i00], frame[i00+1], frame[i00+2]);
+    vec3 b = vec3(frame[i01], frame[i01+1], frame[i01+2]);
+    vec3 c = vec3(frame[i10], frame[i10+1], frame[i10+2]);
+    vec3 dd = vec3(frame[i11], frame[i11+1], frame[i11+2]);
+    return mix(mix(a,b,ax), mix(c,dd,ax), ay);
+}
+
+void main() {
+    uint i = spk_global_index();
+    if (i >= n[0]) return;
+    uint cw = uint(P[P_CW]);
+    vec2 st = canvas_to_film(float(i % cw), float(i / cw));
+    float W = P[P_FILM_W];
+    vec3 e = vec3(0.0);
+    if (P[P_CARRIER] > 1.5 || (st.y >= 0.0 && st.y <= W)) {
+        vec2 sg = st;
+        float shift = 0.0;
+        if (P[P_PAIR_ADV] > 0.0 && st.x > P[P_GS0] + 0.5*(P[P_GW]+P[P_PAIR_ADV])) {
+            shift = P[P_PAIR_ADV];
+            sg.x -= shift;
+        }
+        float cov = penumbra(gate_sdf(sg), P[P_PENUMBRA]);
+        if (cov > 0.0) {
+            float px = P[P_PX];
+            float fx, fy;
+            if (P[P_VERTICAL] < 0.5) {
+                fx = (st.x - P[P_GS0])/px - 0.5;
+                fy = (st.y - P[P_GT0])/px - 0.5;
+            } else {
+                fx = (P[P_GT0] + P[P_GH] - st.y)/px - 0.5;
+                fy = (st.x - P[P_GS0])/px - 0.5;
+            }
+            e += cov * sample_frame(fx, fy);
+        }
+        // Gate flare.
+        float d_gate = gate_sdf(sg);
+        if (P[P_FLARE_AMP] > 0.0 && d_gate > -0.02 && d_gate < 6.0*P[P_FLARE_WIDTH]) {
+            float px = P[P_PX];
+            float in_s = clamp(sg.x, P[P_GS0]+0.12, P[P_GS0]+P[P_GW]-0.12) + shift;
+            float in_t = clamp(st.y, P[P_GT0]+0.12, P[P_GT0]+P[P_GH]-0.12);
+            float fx, fy;
+            if (P[P_VERTICAL] < 0.5) {
+                fx = (in_s - P[P_GS0])/px - 0.5;
+                fy = (in_t - P[P_GT0])/px - 0.5;
+            } else {
+                fx = (P[P_GT0]+P[P_GH]-in_t)/px - 0.5;
+                fy = (in_s - P[P_GS0])/px - 0.5;
+            }
+            vec3 edge_light = sample_frame(fx, fy);
+            float prof = exp(-max(d_gate, 0.0)/P[P_FLARE_WIDTH]);
+            e += P[P_FLARE_AMP] * prof * edge_light;
+        }
+        // Edge fog.
+        float d_top = max(st.y, 0.0);
+        float d_bot = max(W - st.y, 0.0);
+        uint seed = uint(P[P_FOG_SEED]);
+        float period = max(P[P_FOG_PERIOD], 0.1);
+        float nz = 0.6*value_noise(st.x/period, seed) +
+                   0.4*value_noise(st.x/(0.37*period), seed ^ 0xA5A5A5A5u);
+        float fog = P[P_FOG_AMP] * exp(-min(d_top,d_bot)/max(P[P_FOG_WIDTH],1e-3)) * (0.3+0.7*nz);
+        int nl = int(P[P_N_LEAKS]);
+        for (int k=0; k<nl; k++) {
+            int b = P_LEAKS + 5*k;
+            float dd = P[b+1] < 0.5 ? d_top : d_bot;
+            float ds = st.x - P[b];
+            fog += P[b+2] * exp(-ds*ds/(2.0*P[b+3]*P[b+3])) * exp(-dd/P[b+4]);
+        }
+        e += fog * vec3(P[P_FOG_R], P[P_FOG_G], P[P_FOG_B]);
+    }
+    dst[3u*i] = e.x;
+    dst[3u*i+1u] = e.y;
+    dst[3u*i+2u] = e.z;
+}
